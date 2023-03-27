@@ -54,7 +54,7 @@ void Input(List& l)
 {
     int i;
 
-    printf("\n请输入%d元素\n",l.length);
+    printf("\n请输入%d个元素\n",l.length);
     for (i = 0; i < l.length; i++)
     {
         scanf("%d", &l.data[i]);
