@@ -50,7 +50,6 @@ void Init(List& l)
     if (NULL == l.data)
     {
         printf("error\n");
-        free(l.data);
         exit(0);
     }
 }
