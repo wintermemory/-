@@ -47,7 +47,12 @@ void Init(List& l)
     }
     
     l.data = (int*)malloc(sizeof(int) * l.length);
-
+    if (NULL == l.data)
+    {
+        printf("error\n");
+        free(l.data);
+        exit(0);
+    }
 }
 
 void Input(List& l)
