@@ -35,6 +35,7 @@ int main()
 	Delete(L);
 
 	Free(L);
+	system("pause");
 	return 0;
 }
 
@@ -97,6 +98,7 @@ void print(List& L)
 	{
 		printf("%d ",p->data);
 	}
+	printf("\n");
 }
 
 void Delete(List& L)
