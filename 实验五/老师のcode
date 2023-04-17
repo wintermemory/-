@@ -1,0 +1,95 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+// 定义栈
+typedef struct Stack {
+    int* data;
+    int top;
+} Stack;
+
+// 栈的初始化，需要传入一个栈大小size
+void init(Stack* s, int size) {
+    s->data = (int*)malloc(sizeof(int) * size);
+    s->top = -1;
+}
+
+// 判断栈是否为空
+int is_empty(Stack* s) {
+    return s->top == -1;
+}
+
+// 入栈
+void push(Stack* s, int x) {
+    s->data[++s->top] = x;
+}
+
+// 出栈
+int pop(Stack* s) {
+    if (is_empty(s)) {
+        printf("Stack Underflow\n");
+        return -1;
+    }
+    return s->data[s->top--];
+}
+
+// 取栈顶元素
+int peek(Stack* s) {
+    if (is_empty(s)) {
+        printf("Stack Underflow\n");
+        return -1;
+    }
+    return s->data[s->top];
+}
+
+// 判断是否满足出栈的要求
+int is_valid(Stack* s, int* order, int n) {
+    Stack tmp;  // 中转站栈
+    init(&tmp, n);
+    int i = 0, j = 0;
+    while (i < n) {
+        if (!is_empty(s) && peek(s) == order[j]) {
+            pop(s);
+            j++;
+        }
+        else if (!is_empty(&tmp) && peek(&tmp) == order[j]) {
+            pop(&tmp);
+            j++;
+        }
+        else if (i < n) {
+            push(&tmp, order[i]);
+            i++;
+        }
+        else {
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int main() {
+    int n;
+    printf("请输入驶入车站的车厢数目:");
+    scanf("%d", &n);
+
+    Stack s;  // 火车站栈
+    init(&s, n);
+
+    printf("请输入驶入B车厢的特定顺序:");
+    int* order = (int*)malloc(sizeof(int) * n);  // 动态分配数组，存放B车厢的顺序
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &order[i]);
+        push(&s, i + 1);
+    }
+
+    if (is_valid(&s, order, n)) {
+        printf("Yes\n");
+    }
+    else {
+        printf("No\n");
+    }
+
+    free(s.data);
+    free(order);
+    return 0;
+}
