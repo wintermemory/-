@@ -1,0 +1,22 @@
+编写一个程序，用链式存储方式构造二叉树，实现二叉树的基本操作（假设树的元素类型为char），并在此基础上设计一个主程序完成如下功能：
+（1）编写CreatBiTree函数，创建二叉树T；
+（2）编写PreOrder函数，先序遍历二叉树
+（3）编写InOrder函数，中序遍历二叉树；
+（4）编写PostOrder函数，后序遍历二叉树；
+（5）编写PostTreeDepth函数，求二叉树的深度
+思路：
+1.二叉树的二叉链表结点存储类型定义
+typedef struct Node
+{
+DataType  data;
+struct Node *LChild;
+struct Node *RChild;
+}BitNode,*BitTree;
+2.建立二叉树：void CreatBiTree(BitTree *bt)用扩展先序遍历序列创建二叉树，如果是当前树根置为空，否则申请一个新节点。
+3.本程序包含四个模块
+1) 主程序模块：
+2)先序遍历模块
+3)中序遍历模块
+4)后序遍历模块
+
+测试：以扩展先序遍历序列输入，其中.代表空子树：ABC.D..E..FG..H..
